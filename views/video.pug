@@ -1,0 +1,11 @@
+html
+head
+	meta(charset='UTF-8')
+	title SyncAni
+	link(rel='stylesheet', href='/css/main.css')
+body
+	h1 SyncAni
+	form(action='/search' method='post')
+		input(type='text' name='title' placeholder='Anime Title')
+		button.btn search
+	iframe(width='100%' height='104%' allowfullscreen='true' src='http://animebam.net' + vidSrc )
