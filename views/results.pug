@@ -9,6 +9,6 @@ body
 		button.btn search
 	h1 Results from you search: #{ search }
 	ul
-		each val, name in animeResults
+		each val, name in results
 			li
 				a(href=val + '/episodes') #{ name }

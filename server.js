@@ -21,11 +21,10 @@ app
 		res.redirect(`/results/${req.body.title}`);
 	})
 	.get('/results/:search', (req, res) => {
-		// delay 1 second for scraper to finish before rendering
-		setTimeout(function() {
-			const animeResults = animeScraper.titleUrl(req.params.search);
-			res.render('results', { search: req.params.search, animeResults });
-		}, 1000);
+		const animeResults = animeScraper.titleUrl(req.params.search);
+		animeResults.then((results) => {
+			res.render('results', { search: req.params.search, results });
+		})
 	})
 	.get('/series/:search/episodes', (req, res) => {
 		const episodeList = episodeScraper.episodes(req.params.search);

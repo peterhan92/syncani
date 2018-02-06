@@ -1,14 +1,14 @@
 import rp from 'request-promise';
 import cheerio from 'cheerio';
 
-const options = {
-	uri: 'http://www.animebam.net/series',
-	transform: body => cheerio.load(body),
-};
+exports.titleUrl = async (search) => {
+	const options = {
+		uri: 'http://www.animebam.net/series',
+		transform: body => cheerio.load(body),
+	};
 
-rp(options)
-	.then(($) => {
-		exports.titleUrl = (search) => {
+	return rp(options)
+		.then(($) => {
 			const animeTitleUrl = {};
 			// selecting each anime list
 			const animeList = $('.anm_det_pop');
@@ -30,9 +30,8 @@ rp(options)
 			});
 			// return matches
 			return filteredResults;
-		};
-	})
-	.catch((err) => {
-		console.log(err);
-	});
-
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+};
